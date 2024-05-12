@@ -17,14 +17,14 @@ TodoRouter.post("/",async(req,res)=>{
 
 TodoRouter.get("/",async(req,res)=>{
     try {
-        const {liable}=req.query;
-        console.log(liable)
-        console.log(req.body.user_id);
-        console.log(req.headers.authorization);
-        const Todos=await Todomodel.find();
-        console.log(Todos);
-        const todo=Todos.filter((item)=>item.liable.includes(liable) || item.user_id==req.body.user_id);
-        res.send(todo);
+      const {liable,user_id}=req.query;
+      console.log(liable,user_id);
+      console.log(req.body,1);
+      console.log(req.headers.authorization);
+      const Todos=await Todomodel.find();
+      // console.log(Todos);
+      const todo=Todos.filter((item)=>item.liable.includes(liable) || item.user_id==user_id);
+      res.send(todo);
     } catch (error) {
       res.send({"msg":error.message});  
     }
